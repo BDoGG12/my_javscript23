@@ -244,4 +244,52 @@ function removeMiddle(str) {
 
  
 
-  
+  var stoneSkips = [{stone1: 1}, {stone2: 1}, {stone1: 'plop' }, {stone2: 2}, {stone2: 'plop'}];
+
+var stoneSkips2 = [{stone1:'plop'}, {stone2:'plop'}];
+
+var stoneSkips3 =  [{stone1: 1}, {stone2: 1}, {stone2: 2}, {stone2: 'plop'},{stone1: 2}, {stone1: 3}, {stone1: 'plop'}];
+
+function skippingStones(arr) {
+
+  if (arr.length < 2) {
+    return ['tie', 0];
+  }
+
+  var countSkips = 0;
+  var stone = 'stone1';
+
+  for (var i = 0; i < arr.length; i ++) {
+    if (arr[i].stone1 && arr[i].stone1 !== 'plop') {
+      stone = 'stone1';
+      countSkips = arr[i].stone1;
+    } else if (arr[i].stone2 && arr[i].stone2 !== 'plop') {
+      stone = 'stone2';
+      countSkips = arr[i].stone2;
+    }
+  }
+  console.log([stone, countSkips]);
+  return [stone, countSkips];
+}
+
+
+var actualStones = skippingStones(stoneSkips);
+console.log(actualStones);
+var expectedStones = ['stone2', 2];
+
+var actualStones2 = skippingStones(stoneSkips2);
+var expectedStones2 = ['tie', 0];
+
+var actualStones3 = skippingStones(stoneSkips3);
+var expectedStones3 = ['stone1', 3];
+
+//*The assert function works! Don't need to debug it */
+var assertStones = function (actual, expected) {
+  return JSON.stringify(actual) === JSON.stringify(expected);
+}
+
+console.log('intermediat 2a: ', assertStones(actualStones, expectedStones));
+
+console.log('intermediat 2b: ', assertStones(actualStones2, expectedStones2));
+
+console.log('intermediate 2c: ', assertStones(actualStones3, expectedStones3))
