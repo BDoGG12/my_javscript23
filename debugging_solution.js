@@ -252,25 +252,26 @@ var stoneSkips3 =  [{stone1: 1}, {stone2: 1}, {stone2: 2}, {stone2: 'plop'},{sto
 
 function skippingStones(arr) {
 
-  if (arr.length < 2) {
-    return ['tie', 0];
-  }
-
-  var countSkips = 0;
-  var stone = 'stone1';
-
-  for (var i = 0; i < arr.length; i ++) {
-    if (arr[i].stone1 && arr[i].stone1 !== 'plop') {
-      stone = 'stone1';
-      countSkips = arr[i].stone1;
-    } else if (arr[i].stone2 && arr[i].stone2 !== 'plop') {
-      stone = 'stone2';
-      countSkips = arr[i].stone2;
+    if (arr.length <= 2) {
+      return ['tie', 0];
     }
+  
+    var countSkips = 0;
+    var stone = 'stone1';
+  
+    for (var i = 0; i < arr.length; i ++) {
+      if (arr[i].stone1 && arr[i].stone1 !== 'plop') {
+        stone = 'stone1';
+        countSkips = arr[i].stone1;
+      } else if (arr[i].stone2 && arr[i].stone2 !== 'plop') {
+        stone = 'stone2';
+        countSkips = arr[i].stone2;
+      } 
+    }
+    console.log([stone, countSkips]);
+    return [stone, countSkips];
   }
-  console.log([stone, countSkips]);
-  return [stone, countSkips];
-}
+  
 
 
 var actualStones = skippingStones(stoneSkips);
