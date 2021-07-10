@@ -293,4 +293,94 @@ console.log('intermediat 2a: ', assertStones(actualStones, expectedStones));
 
 console.log('intermediat 2b: ', assertStones(actualStones2, expectedStones2));
 
-console.log('intermediate 2c: ', assertStones(actualStones3, expectedStones3))
+console.log('intermediate 2c: ', assertStones(actualStones3, expectedStones3));
+
+function countBoomerangs(arr) {
+	let count = 0;
+	for (let i = 0; i < arr.length ; i++) {
+		if (arr[i] === arr[i + 2] && arr[i + 1] !== arr[i]) {
+			count ++;
+		}
+	}
+    console.log(count);
+	return count;
+}
+
+var assertEqual = function(actual, expected) {
+  if(actual === expected) {
+    return 'passed';
+  } else {
+    return 'failed';
+  }
+}
+
+var actual1 = countBoomerangs([9, 5, 9, 5, 1, 1, 1]);
+console.log(actual1);
+var expected1 = 2;
+
+var actual2 = countBoomerangs([5, 6, 6, 7, 6, 3, 9]);
+var expected2 = 1;
+
+console.log('assert1: ', assertEqual(actual1, expected1));
+console.log('assert2: ', assertEqual(actual2, expected2));
+
+function oldest(people) {
+	var oldest;
+    var maxAge = 0;
+	for (var key in people) {
+		if (people[key] > maxAge) {
+            maxAge = people[key];
+            oldest = key;
+        }
+	}
+    console.log(oldest);
+	return oldest;
+}
+
+var ex1 = {
+  Emma: 71,
+  Jack: 45,
+  Amy: 15,
+  Ben: 29
+};  // ➞ "Emma"
+
+var ex2 = {
+  Max: 9,
+  Josh: 13,
+  Sam: 48,
+  Anne: 33
+} // ➞ "Sam"
+
+
+// //////assertFunction
+var assertOldest = function(actual, expected) {
+  if(actual === expected) {
+    return 'passed';
+  } else {
+    return 'failed';
+  }
+}
+
+///////running the tests
+console.log('assertOldest1: ', assertOldest(oldest({
+  Emma: 71,
+  Jack: 45,
+  Amy: 15,
+  Ben: 29,
+}), 'Emma'));
+
+console.log('assertOldest1: ', assertOldest(oldest({
+  Max: 9,
+  Josh: 13,
+  Sam: 48,
+  Anne: 33,
+}), 'Sam'));
+
+
+
+console.log(oldest({
+    Max: 9,
+    Josh: 13,
+    Sam: 48,
+    Anne: 33,
+  }));
