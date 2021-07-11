@@ -156,11 +156,17 @@ function sliceChunk(str, start, end) {
 console.log("sliceChunk:", sliceChunk("cows in the field", 5, 11) === "in the"); //=> 'in the'
 
 function atIndex(str, ind, targetStr) {
-  var sliced = str.slice(ind);
-  console.log(sliced);
+    var sliced = str.slice(ind);
+    console.log(sliced);
 
-  return sliced.indexOf(targetStr) === targetStr.indexOf(targetStr);
-}
+    for (var i = 0; i < targetStr.length; i++) {
+        if (sliced[i] === targetStr[i]) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+  }
 
 console.log("atIndex:", atIndex("We would love to go!", 9, "love")); //=> true
 console.log("atIndex", atIndex("We would love to go!", 10, "go")); //=> false
